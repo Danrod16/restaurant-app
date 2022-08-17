@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @restaurant.capacity %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>
+
+<div>
+  <h2>Reviews</h2>
+  <ul>
+  <% @reviews.each do |review| %>
+  <li>
+    <%= review.description %> - <%= review.rating %>
+  </li>
+    <hr>
+  <% end %>
+  </ul>
+
+</div>
+
+              <!-- # restaurants/42/reviews -->
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :rating, label: false, placeholder: "Between 1 and 5" %>
+  <%= f.input :description, label: false %>
+  <%= f.submit %>
+<% end %>
